@@ -56,11 +56,11 @@ pod 'BRPickerViewExtension', :git => 'https://github.com/xuzeyu/BRPickerViewExte
 /**
  *  2.显示地址选择器
  *
- *  @param showColumnNum           设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
- *  @param ignoreColumnNum       设置选择器忽略显示的前面列数(即层级数) ，
+ *  @param showColumnNum        设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
+ *  @param ignoreColumnNum      设置选择器忽略显示的前面列数(即层级数) ，
  *  @param astrictAreaCodes     限制的区域码
- *  @param selectAreaCode          选中的区域码
- *  @param resultBlock                 选择后的回调
+ *  @param selectAreaCode       选中的区域码
+ *  @param resultBlock          选择后的回调
  */
 + (void)showAddressPickerWithShowColumnNum:(NSInteger)showColumnNum
                        ignoreColumnNum:(NSInteger)ignoreColumnNum
@@ -71,13 +71,13 @@ pod 'BRPickerViewExtension', :git => 'https://github.com/xuzeyu/BRPickerViewExte
 /**
  *  3.显示地址选择器
  *
- *  @param showColumnNum           设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
- *  @param ignoreColumnNum       设置选择器忽略显示的前面列数(即层级数) ，
+ *  @param showColumnNum        设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
+ *  @param ignoreColumnNum      设置选择器忽略显示的前面列数(即层级数) ，
  *  @param astrictAreaCodes     限制的区域码
- *  @param selectAreaCode          选中的区域码
- *  @param showLetters                设置默认显示字母的位置【多列】
- *  @param orderLetters              设置默认按字母的排序位置【多列】
- *  @param resultBlock                 选择后的回调
+ *  @param selectAreaCode       选中的区域码
+ *  @param showLetters          设置默认显示字母的位置【多列】
+ *  @param orderLetters         设置默认按字母的排序位置【多列】
+ *  @param resultBlock          选择后的回调
  */
 + (void)showAddressPickerWithShowColumnNum:(NSInteger)showColumnNum
                        ignoreColumnNum:(NSInteger)ignoreColumnNum
@@ -90,14 +90,14 @@ pod 'BRPickerViewExtension', :git => 'https://github.com/xuzeyu/BRPickerViewExte
 /**
  *  4.显示地址选择器
  *
- *  @param fileName                      地址选择器的文件名称，必须按照BRTextModel格式
- *  @param showColumnNum           设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
- *  @param ignoreColumnNum       设置选择器忽略显示的前面列数(即层级数) ，
+ *  @param fileName             地址选择器的文件名称，必须按照BRTextModel格式
+ *  @param showColumnNum        设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
+ *  @param ignoreColumnNum      设置选择器忽略显示的前面列数(即层级数) ，
  *  @param astrictAreaCodes     限制的区域码
- *  @param selectAreaCode          选中的区域码
- *  @param showLetters                设置默认显示字母的位置【多列】
- *  @param orderLetters              设置默认按字母的排序位置【多列】
- *  @param resultBlock                 选择后的回调
+ *  @param selectAreaCode       选中的区域码
+ *  @param showLetters          设置默认显示字母的位置【多列】
+ *  @param orderLetters         设置默认按字母的排序位置【多列】
+ *  @param resultBlock          选择后的回调
  */
 + (void)showAddressPickerWithFileName:(nullable NSString *)fileName
                         showColumnNum:(NSInteger)showColumnNum
