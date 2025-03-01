@@ -1,0 +1,41 @@
+PODS:
+  - BRPickerView (2.9.1):
+    - BRPickerView/All (= 2.9.1)
+  - BRPickerView/All (2.9.1):
+    - BRPickerView/Default
+    - BRPickerView/Deprecated
+  - BRPickerView/Core (2.9.1)
+  - BRPickerView/DatePicker (2.9.1):
+    - BRPickerView/Core
+  - BRPickerView/Default (2.9.1):
+    - BRPickerView/DatePicker
+    - BRPickerView/TextPicker
+  - BRPickerView/Deprecated (2.9.1):
+    - BRPickerView/Core
+    - BRPickerView/Deprecated/AddressPickerView (= 2.9.1)
+    - BRPickerView/Deprecated/Base (= 2.9.1)
+    - BRPickerView/Deprecated/StringPickerView (= 2.9.1)
+  - BRPickerView/Deprecated/AddressPickerView (2.9.1):
+    - BRPickerView/Core
+    - BRPickerView/Deprecated/Base
+  - BRPickerView/Deprecated/Base (2.9.1):
+    - BRPickerView/Core
+  - BRPickerView/Deprecated/StringPickerView (2.9.1):
+    - BRPickerView/Core
+    - BRPickerView/Deprecated/Base
+  - BRPickerView/TextPicker (2.9.1):
+    - BRPickerView/Core
+
+DEPENDENCIES:
+  - BRPickerView
+
+SPEC REPOS:
+  trunk:
+    - BRPickerView
+
+SPEC CHECKSUMS:
+  BRPickerView: 6dd69ea2c48e0a0abf1d197a705050e13143ee63
+
+PODFILE CHECKSUM: 46b798f619abaaeda94bebebaf5e00e6243d629e
+
+COCOAPODS: 1.16.2

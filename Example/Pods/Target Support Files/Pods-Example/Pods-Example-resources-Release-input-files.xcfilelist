@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/BRPickerView/BRPickerView.Privacy.bundle
+${PODS_ROOT}/BRPickerView/BRPickerView/Core/BRPickerView.bundle
+${PODS_ROOT}/BRPickerView/BRPickerView/Deprecated/AddressPickerView/BRAddressPickerView.bundle

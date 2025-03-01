@@ -1,18 +1,14 @@
-# BRPickerView
+//
+//  BRTextAddressPickerView.h
+//  Example
+//
+//  Created by xuzy on 2025/2/28.
+//
 
-## 介绍
-基于BRPickerView封装增强，集成BRTextPickerView类，封装了BRTextAddressPickerView。
-1、可以指定区域码，限定区域的显示，即对结果进行筛选，例如传@[@"110000"]，只显示北京市-北京城区-北京下面的所有区
-2、可以根据区域码默认选中
-3、可以设置ignoreColumnNum设置只显示市和区，不显示省份的情况。showColumnNum配合ColumnNum可以灵活显示，省，省市，省市区，市区，区等。
+#import "BRTextPickerView.h"
 
-## 如何导入
-```
-pod 'BRPickerViewExtension', :git => 'https://github.com/xuzeyu/BRPickerViewExtension.git'
-```
+NS_ASSUME_NONNULL_BEGIN
 
-## 如何使用
-```objc
 @interface BRTextModel (BRTextAddressPickerView)
 /** 原始字符串，设置showLetters显示为YES才用到，此时text值增加了字母前缀，此为原字符串 */
 @property (nonatomic, copy) NSString *originalText;
@@ -110,5 +106,4 @@ pod 'BRPickerViewExtension', :git => 'https://github.com/xuzeyu/BRPickerViewExte
 
 @end
 
-```
-
+NS_ASSUME_NONNULL_END
