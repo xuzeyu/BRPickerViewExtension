@@ -69,12 +69,12 @@
     return nil;
 }
 
-#pragma mark - 1.默认的数据源文件名称
+#pragma mark - 默认的数据源文件名称
 + (NSString *)defaultFilename {
     return @"region_tree_data.json";
 }
 
-#pragma mark - 2.显示地址选择器
+#pragma mark - 1.显示地址选择器
 + (void)showAddressPickerWithShowColumnNum:(NSInteger)showColumnNum
                        ignoreColumnNum:(NSInteger)ignoreColumnNum
                  astrictAreaCodes:(nullable NSArray <NSString *>*)astrictAreaCodes
@@ -83,7 +83,7 @@
     [self showAddressPickerWithShowColumnNum:showColumnNum ignoreColumnNum:ignoreColumnNum astrictAreaCodes:astrictAreaCodes selectAreaCode:selectAreaCode showLetters:@[] orderLetters:@[] resultBlock:resultBlock];
 }
 
-#pragma mark - 3.显示地址选择器
+#pragma mark - 2.显示地址选择器
 + (void)showAddressPickerWithShowColumnNum:(NSInteger)showColumnNum
                        ignoreColumnNum:(NSInteger)ignoreColumnNum
                  astrictAreaCodes:(nullable NSArray <NSString *>*)astrictAreaCodes
@@ -94,7 +94,7 @@
     [self showAddressPickerWithFileName:nil showColumnNum:showColumnNum ignoreColumnNum:ignoreColumnNum astrictAreaCodes:astrictAreaCodes selectAreaCode:selectAreaCode showLetters:showLetters orderLetters:orderLetters resultBlock:resultBlock];
 }
 
-#pragma mark - 4.显示地址选择器
+#pragma mark - 3.显示地址选择器
 + (void)showAddressPickerWithFileName:(nullable NSString *)fileName
                         showColumnNum:(NSInteger)showColumnNum
                        ignoreColumnNum:(NSInteger)ignoreColumnNum
@@ -117,8 +117,84 @@
     [addressPickerView show];
 }
 
+#pragma mark - 1.直接获取地址结果
++ (void)addressPickerWithShowColumnNum:(NSInteger)showColumnNum
+                       ignoreColumnNum:(NSInteger)ignoreColumnNum
+                 astrictAreaCodes:(nullable NSArray <NSString *>*)astrictAreaCodes
+                         selectAreaCode:(NSString *)selectAreaCode
+                           resultBlock:(nullable BRMultiResultBlock)resultBlock {
+    [self addressPickerWithShowColumnNum:showColumnNum ignoreColumnNum:ignoreColumnNum astrictAreaCodes:astrictAreaCodes selectAreaCode:selectAreaCode showLetters:@[] orderLetters:@[] resultBlock:resultBlock];
+}
+
+#pragma mark - 2.直接获取地址结果
++ (void)addressPickerWithShowColumnNum:(NSInteger)showColumnNum
+                       ignoreColumnNum:(NSInteger)ignoreColumnNum
+                 astrictAreaCodes:(nullable NSArray <NSString *>*)astrictAreaCodes
+                         selectAreaCode:(NSString *)selectAreaCode
+                          showLetters:(NSArray <NSNumber *> *)showLetters
+                         orderLetters:(NSArray <NSNumber *> *)orderLetters
+                           resultBlock:(nullable BRMultiResultBlock)resultBlock {
+    [self addressPickerWithFileName:nil showColumnNum:showColumnNum ignoreColumnNum:ignoreColumnNum astrictAreaCodes:astrictAreaCodes selectAreaCode:selectAreaCode showLetters:showLetters orderLetters:orderLetters resultBlock:resultBlock];
+}
+
+#pragma mark - 3.直接获取地址结果
++ (void)addressPickerWithFileName:(nullable NSString *)fileName
+                        showColumnNum:(NSInteger)showColumnNum
+                       ignoreColumnNum:(NSInteger)ignoreColumnNum
+                 astrictAreaCodes:(nullable NSArray <NSString *>*)astrictAreaCodes
+                         selectAreaCode:(NSString *)selectAreaCode
+                          showLetters:(NSArray <NSNumber *> *)showLetters
+                         orderLetters:(NSArray <NSNumber *> *)orderLetters
+                      resultBlock:(nullable BRMultiResultBlock)resultBlock {
+    // 创建地址选择器
+    BRTextAddressPickerView *addressPickerView = [[BRTextAddressPickerView alloc] initWithPickerMode:BRTextPickerComponentCascade];
+    addressPickerView.dataSourceArr = [self getDataSourceWithFileName:fileName.length > 0 ? fileName : [self defaultFilename] isMainBundle:fileName.length > 0];
+    addressPickerView.showColumnNum = showColumnNum;
+    addressPickerView.astrictAreaCodes = astrictAreaCodes;
+    addressPickerView.ignoreColumnNum = ignoreColumnNum;
+    addressPickerView.multiResultBlock = resultBlock;
+    addressPickerView.selectAreaCode = selectAreaCode;
+    addressPickerView.showLetters = showLetters;
+    addressPickerView.orderLetters = orderLetters;
+    
+    [addressPickerView preprocessData];
+    
+    //根据selectAreaCode设置选中的地址
+    BRTextModel *node = [BRTextAddressPickerView findNodeWithCode:selectAreaCode dataSource:addressPickerView.dataSourceArr isSearchPrefix:YES];
+    NSMutableArray <BRTextModel *>*selectNodes = [NSMutableArray array];
+    if (node) {
+        do {
+            [selectNodes insertObject:node atIndex:0];
+            node = [BRTextAddressPickerView findNodeWithCode:node.parentCode dataSource:addressPickerView.dataSourceArr isSearchPrefix:NO];
+        } while (node);
+        
+        //如果不是最后一列的数据，默认后续列选择第一个
+        if (selectNodes.count < showColumnNum) {
+            NSInteger count = showColumnNum - selectNodes.count;
+            BRTextModel *lastNode = selectNodes.lastObject;
+            while (count-- && lastNode.children.count > 0) {
+                [selectNodes addObject:lastNode.children.firstObject];
+                lastNode = lastNode.children.firstObject;
+            }
+        }
+    }
+    
+    if (resultBlock) {
+        resultBlock(selectNodes, addressPickerView.selectIndexs);
+    }
+}
+
 #pragma mark - 重写父类方法
 - (void)show {
+    //显示前预处理数据
+    [self preprocessData];
+    
+    //显示处理后的数据
+    [super show];
+}
+
+#pragma mark - 显示前预处理数据
+- (void)preprocessData {
     //递归设置parentCode
     [BRTextAddressPickerView setParentCodeForModels:self.dataSourceArr parentCode:nil];
     
@@ -149,16 +225,23 @@
         BRTextModel *node = [BRTextAddressPickerView findNodeWithCode:self.selectAreaCode dataSource:self.dataSourceArr isSearchPrefix:YES];
         NSMutableArray <NSNumber *>*selectIndexs = [NSMutableArray array];
         if (node) {
+            BRTextModel *nodeTmp = node;
             do {
-                [selectIndexs insertObject:@(node.index) atIndex:0];
-                node = [BRTextAddressPickerView findNodeWithCode:node.parentCode dataSource:self.dataSourceArr isSearchPrefix:NO];
-            } while (node);
+                [selectIndexs insertObject:@(nodeTmp.index) atIndex:0];
+                nodeTmp = [BRTextAddressPickerView findNodeWithCode:nodeTmp.parentCode dataSource:self.dataSourceArr isSearchPrefix:NO];
+            } while (nodeTmp);
+        }
+        //如果不是最后一列的数据，默认后续列选择index为0
+        if (selectIndexs.count < self.showColumnNum) {
+            NSInteger count = self.showColumnNum - selectIndexs.count;
+            BRTextModel *lastNode = node;
+            while (count-- && lastNode.children.count > 0) {
+                [selectIndexs addObject:@(0)];
+                lastNode = lastNode.children.firstObject;
+            }
         }
         self.selectIndexs = selectIndexs;
     }
-    
-    //显示处理后的数据
-    [super show];
 }
 
 #pragma mark - 递归设置parentCode

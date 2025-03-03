@@ -25,7 +25,15 @@
 }
 
 - (void)buttonClick {
-    [BRTextAddressPickerView showAddressPickerWithFileName:nil showColumnNum:3 ignoreColumnNum:0 astrictAreaCodes:@[] selectAreaCode:@"" showLetters:@[@YES, @YES, @YES] orderLetters:@[@YES, @YES] resultBlock:^(NSArray<BRTextModel *> * _Nullable models, NSArray<NSNumber *> * _Nullable indexs) {
+    [BRTextAddressPickerView showAddressPickerWithFileName:nil showColumnNum:3 ignoreColumnNum:0 astrictAreaCodes:@[] selectAreaCode:@"110100" showLetters:@[@YES, @YES, @YES] orderLetters:@[@YES, @YES] resultBlock:^(NSArray<BRTextModel *> * _Nullable models, NSArray<NSNumber *> * _Nullable indexs) {
+        NSString *text = [models br_joinText:@"-"];
+        NSLog(@"text = %@", text);
+        NSString *text2 = [models br_joinValue:@"originalText" separator:@"-"];
+        NSLog(@"text = %@", text2);
+    }];
+    
+    //直接获取结果
+    [BRTextAddressPickerView addressPickerWithFileName:nil showColumnNum:3 ignoreColumnNum:0 astrictAreaCodes:@[] selectAreaCode:@"120105" showLetters:@[@YES, @YES, @YES] orderLetters:@[@YES, @YES] resultBlock:^(NSArray<BRTextModel *> * _Nullable models, NSArray<NSNumber *> * _Nullable indexs) {
         NSString *text = [models br_joinText:@"-"];
         NSLog(@"text = %@", text);
         NSString *text2 = [models br_joinValue:@"originalText" separator:@"-"];

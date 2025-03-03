@@ -45,12 +45,12 @@ NS_ASSUME_NONNULL_BEGIN
 //================================================= 华丽的分割线 =================================================
 
 /**
- *  1.默认的数据源文件名称
+ *  默认的数据源文件名称
  */
 + (NSString *)defaultFilename;
 
 /**
- *  2.显示地址选择器
+ *  1.显示地址选择器
  *
  *  @param showColumnNum           设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
  *  @param ignoreColumnNum       设置选择器忽略显示的前面列数(即层级数) ，
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
                       resultBlock:(nullable BRMultiResultBlock)resultBlock;
 
 /**
- *  3.显示地址选择器
+ *  2.显示地址选择器
  *
  *  @param showColumnNum           设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
  *  @param ignoreColumnNum       设置选择器忽略显示的前面列数(即层级数) ，
@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
                       resultBlock:(nullable BRMultiResultBlock)resultBlock;
 
 /**
- *  4.显示地址选择器
+ *  3.显示地址选择器
  *
  *  @param fileName                      地址选择器的文件名称，必须按照BRTextModel格式
  *  @param showColumnNum           设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
@@ -104,6 +104,60 @@ NS_ASSUME_NONNULL_BEGIN
                          orderLetters:(NSArray <NSNumber *> *)orderLetters
                       resultBlock:(nullable BRMultiResultBlock)resultBlock;
 
+/**
+ *  1.直接获取地址结果，用于通过selectAreaCode直接获取地址结果，同步获取
+ *
+ *  @param showColumnNum           设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
+ *  @param ignoreColumnNum       设置选择器忽略显示的前面列数(即层级数) ，
+ *  @param astrictAreaCodes     限制的区域码
+ *  @param selectAreaCode          选中的区域码
+ *  @param resultBlock                 选择后的回调
+ */
++ (void)addressPickerWithShowColumnNum:(NSInteger)showColumnNum
+                       ignoreColumnNum:(NSInteger)ignoreColumnNum
+                 astrictAreaCodes:(nullable NSArray <NSString *>*)astrictAreaCodes
+                         selectAreaCode:(NSString *)selectAreaCode
+                      resultBlock:(nullable BRMultiResultBlock)resultBlock;
+
+/**
+ *  2.直接获取地址结果，用于通过selectAreaCode直接获取地址结果，同步获取
+ *
+ *  @param showColumnNum           设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
+ *  @param ignoreColumnNum       设置选择器忽略显示的前面列数(即层级数) ，
+ *  @param astrictAreaCodes     限制的区域码
+ *  @param selectAreaCode          选中的区域码
+ *  @param showLetters                设置默认显示字母的位置【多列】
+ *  @param orderLetters              设置默认按字母的排序位置【多列】
+ *  @param resultBlock                 选择后的回调
+ */
++ (void)addressPickerWithShowColumnNum:(NSInteger)showColumnNum
+                       ignoreColumnNum:(NSInteger)ignoreColumnNum
+                 astrictAreaCodes:(nullable NSArray <NSString *>*)astrictAreaCodes
+                         selectAreaCode:(NSString *)selectAreaCode
+                          showLetters:(NSArray <NSNumber *> *)showLetters
+                         orderLetters:(NSArray <NSNumber *> *)orderLetters
+                      resultBlock:(nullable BRMultiResultBlock)resultBlock;
+
+/**
+ *  3.直接获取地址结果，用于通过selectAreaCode直接获取地址结果，同步获取
+ *
+ *  @param fileName                      地址选择器的文件名称，必须按照BRTextModel格式
+ *  @param showColumnNum           设置选择器显示的列数(即层级数)，默认是根据数据源层级动态计算显示
+ *  @param ignoreColumnNum       设置选择器忽略显示的前面列数(即层级数) ，
+ *  @param astrictAreaCodes     限制的区域码
+ *  @param selectAreaCode          选中的区域码
+ *  @param showLetters                设置默认显示字母的位置【多列】
+ *  @param orderLetters              设置默认按字母的排序位置【多列】
+ *  @param resultBlock                 选择后的回调
+ */
++ (void)addressPickerWithFileName:(nullable NSString *)fileName
+                        showColumnNum:(NSInteger)showColumnNum
+                       ignoreColumnNum:(NSInteger)ignoreColumnNum
+                 astrictAreaCodes:(nullable NSArray <NSString *>*)astrictAreaCodes
+                         selectAreaCode:(NSString *)selectAreaCode
+                          showLetters:(NSArray <NSNumber *> *)showLetters
+                         orderLetters:(NSArray <NSNumber *> *)orderLetters
+                      resultBlock:(nullable BRMultiResultBlock)resultBlock;
 @end
 
 NS_ASSUME_NONNULL_END
