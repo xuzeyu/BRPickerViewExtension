@@ -89,9 +89,8 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "BRPickerViewExtension/**/*"
-  spec.resource = 'BRPickerViewExtension/BRPickerViewExtension.bundle'
-  spec.resource_bundles = { 'BRPickerViewExtension.Privacy' => 'BRPickerViewExtension/PrivacyInfo.xcprivacy' }
+  spec.source_files = 'BRPickerViewExtension/**/*.{h,m}'
+  spec.resources = ['BRPickerViewExtension/BRPickerViewExtension.bundle', 'BRPickerViewExtension/PrivacyInfo.xcprivacy']
   # spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
