@@ -34,8 +34,20 @@
 
 @implementation BRTextAddressPickerView
 
-+ (NSArray *)getDataSourceWithFileName:(NSString *)fileName {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
++ (NSBundle *)getPickerViewBundle {
+    return [NSBundle bundleWithIdentifier:@"BRPickerViewExtension"];
+}
+
++ (NSArray *)getDataSourceWithFileName:(NSString *)fileName isMainBundle:(BOOL)isMainBundle {
+    NSString *filePath = nil;
+    if (isMainBundle) {
+        filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+    }else {
+        NSBundle *customBundle = [self getPickerViewBundle];
+        if (customBundle) {
+            filePath = [customBundle pathForResource:fileName ofType:nil];
+        }
+    }
     if (filePath && filePath.length > 0) {
         if ([fileName hasSuffix:@".plist"]) {
             // 获取本地 plist文件 数据源
@@ -91,7 +103,7 @@
                       resultBlock:(nullable BRMultiResultBlock)resultBlock {
     // 创建地址选择器
     BRTextAddressPickerView *addressPickerView = [[BRTextAddressPickerView alloc] initWithPickerMode:BRTextPickerComponentCascade];
-    addressPickerView.dataSourceArr = [self getDataSourceWithFileName:fileName.length > 0 ? fileName : [self defaultFilename]];
+    addressPickerView.dataSourceArr = [self getDataSourceWithFileName:fileName.length > 0 ? fileName : [self defaultFilename] isMainBundle:fileName.length > 0];
     addressPickerView.showColumnNum = showColumnNum;
     addressPickerView.astrictAreaCodes = astrictAreaCodes;
     addressPickerView.ignoreColumnNum = ignoreColumnNum;
