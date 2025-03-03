@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		EA1F89BAC39EECADA3C95A8F /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE003B9306456BE0FDA485C /* libPods-Example.a */; };
 		FD67559B2D755C0100229E0A /* BRTextAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6755962D755C0100229E0A /* BRTextAddressPickerView.m */; };
-		FD67559C2D755C0100229E0A /* BRPickerViewExtension.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FD6755982D755C0100229E0A /* BRPickerViewExtension.bundle */; };
-		FD67559D2D755C0100229E0A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FD6755992D755C0100229E0A /* PrivacyInfo.xcprivacy */; };
+		FD6755A52D756AF900229E0A /* BRPickerViewExtension.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FD6755A32D756AF900229E0A /* BRPickerViewExtension.bundle */; };
+		FD6755A62D756AF900229E0A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FD6755A42D756AF900229E0A /* PrivacyInfo.xcprivacy */; };
 		FDC6EBAE2906211E008CAA42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC6EBAD2906211E008CAA42 /* AppDelegate.m */; };
 		FDC6EBB12906211E008CAA42 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC6EBB02906211E008CAA42 /* SceneDelegate.m */; };
 		FDC6EBB42906211E008CAA42 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC6EBB32906211E008CAA42 /* ViewController.m */; };
@@ -46,8 +46,8 @@
 		897C8470057AB71128916FB8 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		FD6755952D755C0100229E0A /* BRTextAddressPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRTextAddressPickerView.h; sourceTree = "<group>"; };
 		FD6755962D755C0100229E0A /* BRTextAddressPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRTextAddressPickerView.m; sourceTree = "<group>"; };
-		FD6755982D755C0100229E0A /* BRPickerViewExtension.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BRPickerViewExtension.bundle; sourceTree = "<group>"; };
-		FD6755992D755C0100229E0A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		FD6755A32D756AF900229E0A /* BRPickerViewExtension.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BRPickerViewExtension.bundle; sourceTree = "<group>"; };
+		FD6755A42D756AF900229E0A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		FDC6EBA92906211E008CAA42 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDC6EBAC2906211E008CAA42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FDC6EBAD2906211E008CAA42 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -113,21 +113,13 @@
 		FD6755972D755C0100229E0A /* BRPickerViewExtension */ = {
 			isa = PBXGroup;
 			children = (
+				FD6755A32D756AF900229E0A /* BRPickerViewExtension.bundle */,
+				FD6755A42D756AF900229E0A /* PrivacyInfo.xcprivacy */,
 				FD6755952D755C0100229E0A /* BRTextAddressPickerView.h */,
 				FD6755962D755C0100229E0A /* BRTextAddressPickerView.m */,
 			);
 			name = BRPickerViewExtension;
 			path = ../BRPickerViewExtension;
-			sourceTree = SOURCE_ROOT;
-		};
-		FD67559A2D755C0100229E0A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				FD6755982D755C0100229E0A /* BRPickerViewExtension.bundle */,
-				FD6755992D755C0100229E0A /* PrivacyInfo.xcprivacy */,
-			);
-			name = Resources;
-			path = ../Resources;
 			sourceTree = SOURCE_ROOT;
 		};
 		FDC6EBA02906211E008CAA42 = {
@@ -156,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				FD6755972D755C0100229E0A /* BRPickerViewExtension */,
-				FD67559A2D755C0100229E0A /* Resources */,
 				FDC6EBAC2906211E008CAA42 /* AppDelegate.h */,
 				FDC6EBAD2906211E008CAA42 /* AppDelegate.m */,
 				FDC6EBAF2906211E008CAA42 /* SceneDelegate.h */,
@@ -294,8 +285,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD67559C2D755C0100229E0A /* BRPickerViewExtension.bundle in Resources */,
-				FD67559D2D755C0100229E0A /* PrivacyInfo.xcprivacy in Resources */,
+				FD6755A52D756AF900229E0A /* BRPickerViewExtension.bundle in Resources */,
+				FD6755A62D756AF900229E0A /* PrivacyInfo.xcprivacy in Resources */,
 				FDC6EBBC2906211E008CAA42 /* LaunchScreen.storyboard in Resources */,
 				FDC6EBB92906211E008CAA42 /* Assets.xcassets in Resources */,
 				FDC6EBB72906211E008CAA42 /* Main.storyboard in Resources */,

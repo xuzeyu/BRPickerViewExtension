@@ -90,7 +90,8 @@ Pod::Spec.new do |spec|
   #
 
   spec.source_files  = "BRPickerViewExtension/**/*"
-  spec.resources = ["Resources/PrivacyInfo.xcprivacy", "Resources/BRPickerViewExtension.bundle"]
+  spec.resource = 'BRPickerViewExtension/BRPickerViewExtension.bundle'
+  spec.resource_bundles = { 'BRPickerViewExtension.Privacy' => 'BRPickerViewExtension/PrivacyInfo.xcprivacy' }
   # spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"

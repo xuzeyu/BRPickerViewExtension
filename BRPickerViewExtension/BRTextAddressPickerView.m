@@ -35,7 +35,9 @@
 @implementation BRTextAddressPickerView
 
 + (NSBundle *)getPickerViewBundle {
-    return [NSBundle bundleWithIdentifier:@"BRPickerViewExtension"];
+    NSBundle *_bundle = [NSBundle bundleForClass:NSClassFromString(@"BRTextAddressPickerView")];
+    NSString *path = [_bundle pathForResource:@"BRPickerViewExtension" ofType:@"bundle"];
+    return [NSBundle bundleWithPath:path];
 }
 
 + (NSArray *)getDataSourceWithFileName:(NSString *)fileName isMainBundle:(BOOL)isMainBundle {
