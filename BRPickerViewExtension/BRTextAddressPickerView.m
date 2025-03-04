@@ -297,6 +297,7 @@
 
 // 查找指定code的节点
 + (BRTextModel *)findNodeWithCode:(NSString *)code dataSource:(NSArray<BRTextModel *> *)dataSource isSearchPrefix:(BOOL)isSearchPrefix {
+    if (code.length == 0) return nil;
     // 遍历所有节点查找
     for (BRTextModel *node in dataSource) {
         if (isSearchPrefix) {
@@ -318,6 +319,7 @@
 
 // 在子节点中查找code
 + (BRTextModel *)findNodeInChildren:(NSArray<BRTextModel *> *)children withCode:(NSString *)code isSearchPrefix:(BOOL)isSearchPrefix {
+    if (code.length == 0) return nil;
     for (BRTextModel *child in children) {
         if (isSearchPrefix) {
             if ([child.code hasPrefix:code]) {
